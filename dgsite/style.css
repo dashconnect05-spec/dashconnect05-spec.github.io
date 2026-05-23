@@ -93,7 +93,6 @@ footer {
   text-decoration: none;
   color: inherit;
   display: inline-block;
-  font-size: 11px;       /* slightly smaller than body text */
 }
 
 .nav-group a:link,
