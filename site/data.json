@@ -1,0 +1,29 @@
+{
+  "images": [
+    "img1.jpg",
+    "img2.jpg",
+    "img3.jpg",
+    "img4.gif",
+    "img5.png"
+    
+    
+  ],
+  "links": [
+    "link1.txt",
+    "link2.txt",
+    "link3.txt",
+    "link3.txt"
+  ]
+  ,
+  "social": [
+    "ig.png",
+    "x.png",
+    "tiktok.png",
+    "discord.png"
+  ]
+  ,
+  "ui": [
+    "background.jpg",
+    "logo.png"
+  ]
+}
