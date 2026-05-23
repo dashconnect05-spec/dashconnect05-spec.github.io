@@ -1,0 +1,200 @@
+/* =========================================================
+   GLOBAL RESET / SAFETY
+========================================================= */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   MAIN PAGE LAYOUT
+========================================================= */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  background: #111;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* =========================================================
+   BACKGROUND IMAGE LAYER
+========================================================= */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: url("IMAGES/ui/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.25;
+  z-index: -2;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.45);
+  z-index: -1;
+}
+
+/* =========================================================
+   HEADER / FOOTER
+========================================================= */
+header, footer {
+  background: transparent;
+  padding: 3px 13px;
+}
+
+header {
+  padding-bottom: 12px;
+}
+
+footer {
+  padding-top: 25px;
+}
+
+/* =========================================================
+   HEADER INNER LAYOUT
+========================================================= */
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+}
+
+/* =========================================================
+   NAV GROUPS (LEFT / RIGHT)
+========================================================= */
+.nav-group {
+  display: flex;
+  gap: 28px;           /* more breathing room between items */
+  position: absolute;
+}
+
+/* Remove all default link styling */
+.nav-group a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+  font-size: 11px;       /* slightly smaller than body text */
+  letter-spacing: 1.5px;
+}
+
+.nav-group a:link,
+.nav-group a:visited,
+.nav-group a:hover,
+.nav-group a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-left {
+  right: calc(50% + 200px);
+}
+
+.nav-right {
+  left: calc(50% + 200px);
+}
+
+/* =========================================================
+   LOGO
+========================================================= */
+.logo {
+  position: relative;
+}
+
+.logo img {
+  height: 110px;
+  width: auto;
+  display: block;
+}
+
+/* =========================================================
+   FOOTER SOCIAL ICONS
+========================================================= */
+.footer-inner {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.social-icon-img {
+  width: clamp(60px, 2.8vw, 38px);
+  height: clamp(60px, 2.8vw, 38px);
+  object-fit: contain;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.social-icon-img:hover {
+  transform: scale(1.1);
+}
+
+.youtube-icon {
+  transform: scale(1.9);
+}
+
+.tiktok-icon {
+  transform: scale(1.1);
+}
+
+.tiktok-icon:hover {
+  transform: scale(1.15);
+}
+
+.youtube-icon:hover {
+  transform: scale(1.95);
+}
+
+/* =========================================================
+   MOBILE ADJUSTMENTS
+========================================================= */
+@media (max-width: 700px) {
+
+  header {
+    padding: 3px;
+    padding-top: 10px;
+  }
+
+  .header-inner {
+    justify-content: space-between;
+    gap: 1px;
+  }
+
+  .nav-group {
+    position: static;
+    gap: 4px;
+  }
+
+  .nav-group a {
+    font-size: 9px;
+    letter-spacing: 0.5px;
+  }
+
+  .logo img {
+    height: clamp(39px, 10vw, 60px);
+    display: block;
+  }
+
+  .social-icon-img {
+    width: 32px;
+    height: 32px;
+  }
+}
