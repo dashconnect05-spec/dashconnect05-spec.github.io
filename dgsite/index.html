@@ -156,10 +156,13 @@ function getSafePosition(index) {
   const randomOffsetX = (Math.random() - 0.5) * 120;
   const randomOffsetY = (Math.random() - 0.5) * 160;
 
-  return {
-    x: startX + col * settings.COL_GAP + randomOffsetX,
-    y: settings.TOP_OFFSET + row * settings.ROW_GAP + randomOffsetY
-  };
+  const maxX = containerWidth - 200; // 200 = rough max square width
+  const rawX = startX + col * settings.COL_GAP + randomOffsetX;
+
+   return {
+  x: Math.min(rawX, maxX),
+  y: settings.TOP_OFFSET + row * settings.ROW_GAP + randomOffsetY
+};
 }
 
 async function loadData() {
