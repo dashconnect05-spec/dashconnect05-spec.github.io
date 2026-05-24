@@ -8,7 +8,7 @@
 <!-- Shared styles (header, footer, nav, background) -->
 <link rel="stylesheet" href="style.css">
 
-<style>
+<style> 
 /* =========================================================
    INDEX-ONLY STYLES
    (gallery squares, scroll area — unique to this page)
@@ -152,7 +152,7 @@ function getSafePosition(index) {
   const row = Math.floor(index / settings.COLS);
   const containerWidth = scrollArea.clientWidth;
   const totalWidth = settings.COL_GAP * (settings.COLS - 1);
-  const startX = (containerWidth - totalWidth) / 2;
+  const startX = (containerWidth - totalWidth) / 2 - 80;
   const randomOffsetX = (Math.random() - 0.5) * 120;
   const randomOffsetY = (Math.random() - 0.5) * 160;
 
