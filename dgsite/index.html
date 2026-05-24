@@ -148,7 +148,24 @@ function getSafePosition(index, squareWidth = 200) {
     };
   }
 
-    // if no overlap found after 10 tries, just use the grid position exactly
+  const col = index % settings.COLS;
+  const row = Math.floor(index / settings.COLS);
+  const containerWidth = scrollArea.clientWidth;
+  const totalWidth = settings.COL_GAP * (settings.COLS - 1);
+  const startX = (containerWidth - totalWidth) / 2 - 80;
+  const maxX = containerWidth - squareWidth - 40;
+
+  let x, y, attempts = 0;
+
+  do {
+    const randomOffsetX = (Math.random() - 0.5) * 120;
+    const randomOffsetY = (Math.random() - 0.5) * 160;
+
+    x = Math.min(startX + col * settings.COL_GAP + randomOffsetX, maxX);
+    y = settings.TOP_OFFSET + row * settings.ROW_GAP + randomOffsetY;
+
+    attempts++;
+
     if (attempts > 10) {
       x = Math.min(startX + col * settings.COL_GAP, maxX);
       y = settings.TOP_OFFSET + row * settings.ROW_GAP;
@@ -162,23 +179,6 @@ function getSafePosition(index, squareWidth = 200) {
   }));
 
   return { x, y };
-}
-
-  const col = index % settings.COLS;
-  const row = Math.floor(index / settings.COLS);
-  const containerWidth = scrollArea.clientWidth;
-  const totalWidth = settings.COL_GAP * (settings.COLS - 1);
-  const startX = (containerWidth - totalWidth) / 2 - 80;
-  const randomOffsetX = (Math.random() - 0.5) * 120;
-  const randomOffsetY = (Math.random() - 0.5) * 160;
-
-  const maxX = containerWidth - squareWidth - 40;
-  const rawX = startX + col * settings.COL_GAP + randomOffsetX;
-
-   return {
-  x: Math.min(rawX, maxX),
-  y: settings.TOP_OFFSET + row * settings.ROW_GAP + randomOffsetY
-};
 }
 
 async function loadData() {
