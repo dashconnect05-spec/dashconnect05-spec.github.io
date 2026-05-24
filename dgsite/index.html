@@ -156,7 +156,7 @@ function getSafePosition(index, squareWidth = 200) {
   const randomOffsetX = (Math.random() - 0.5) * 120;
   const randomOffsetY = (Math.random() - 0.5) * 160;
 
-  const maxX = containerWidth - squareWidth;
+  const maxX = containerWidth - squareWidth - 40;
   const rawX = startX + col * settings.COL_GAP + randomOffsetX;
 
    return {
