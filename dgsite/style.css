@@ -105,8 +105,12 @@ footer {
 .nav-group a:hover {
   text-decoration: none;
   color: inherit;
-  text-shadow: 0 0 8px white, 0 0 20px white;
-  transition: text-shadow 0.2s ease;
+  text-shadow: 
+    0 0 6px #ff9de2,
+    0 0 12px #ff5ecb,
+    0 0 25px #c724b1,
+    0 0 40px #7b2fff;
+  transition: text-shadow 0.3s ease;
 }
 
 .nav-left {
