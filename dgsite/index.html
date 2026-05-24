@@ -137,7 +137,7 @@ function getSettings() {
   };
 }
 
-function getSafePosition(index) {
+function getSafePosition(index, squareWidth = 200) {
   const mobile = window.innerWidth < 700;
 
   if (mobile) {
@@ -156,7 +156,7 @@ function getSafePosition(index) {
   const randomOffsetX = (Math.random() - 0.5) * 120;
   const randomOffsetY = (Math.random() - 0.5) * 160;
 
-  const maxX = containerWidth - 200; // 200 = rough max square width
+  const maxX = containerWidth - squareWidth;
   const rawX = startX + col * settings.COL_GAP + randomOffsetX;
 
    return {
@@ -179,7 +179,7 @@ async function loadData() {
 
 async function createSquare(imgName, linkFile, index) {
   const baseSize = (160 + Math.random() * 120) * settings.SIZE_SCALE;
-  const pos = getSafePosition(index);
+  const pos = getSafePosition(index, baseSize * 1.2);
 
   const div = document.createElement('div');
   div.className = 'square';
