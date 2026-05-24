@@ -153,8 +153,12 @@ footer {
 
 .social-icon-img:hover {
   transform: scale(1.1);
-  filter: drop-shadow(0 0 6px white) drop-shadow(0 0 14px white);
-  transition: filter 0.2s ease;
+  filter: 
+    drop-shadow(0 0 4px #ff9de2)
+    drop-shadow(0 0 10px #ff5ecb)
+    drop-shadow(0 0 20px #c724b1)
+    drop-shadow(0 0 35px #7b2fff);
+  transition: filter 0.3s ease;
 }
 
 .youtube-icon {
