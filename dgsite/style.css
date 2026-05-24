@@ -97,10 +97,16 @@ footer {
 
 .nav-group a:link,
 .nav-group a:visited,
-.nav-group a:hover,
 .nav-group a:active {
   text-decoration: none;
   color: inherit;
+}
+
+.nav-group a:hover {
+  text-decoration: none;
+  color: inherit;
+  text-shadow: 0 0 8px white, 0 0 20px white;
+  transition: text-shadow 0.2s ease;
 }
 
 .nav-left {
