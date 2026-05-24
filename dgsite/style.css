@@ -149,6 +149,8 @@ footer {
 
 .social-icon-img:hover {
   transform: scale(1.1);
+  filter: drop-shadow(0 0 6px white) drop-shadow(0 0 14px white);
+  transition: filter 0.2s ease;
 }
 
 .youtube-icon {
