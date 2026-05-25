@@ -1,0 +1,33 @@
+{
+  "images": [
+    "img1.jpg",
+    "img2.jpg",
+    "text",
+    "img3.jpg",
+    "img4.gif",
+    "img5.png",
+    "image6.jpg"
+  ],
+  "links": [
+    "link1.txt",
+    "link2.txt",
+    "none",
+    "link3.txt",
+    "link3.txt",
+    "link3.txt",
+    "link3.txt"
+  ],
+  "texts": {
+    "2": "Your text goes here. Write anything you want — a quote, an announcement, a date, whatever."
+  },
+  "social": [
+    "ig.png",
+    "x.png",
+    "tiktok.png",
+    "discord.png"
+  ],
+  "ui": [
+    "background.jpg",
+    "logo.png"
+  ]
+}
