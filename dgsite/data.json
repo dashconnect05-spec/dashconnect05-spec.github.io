@@ -18,16 +18,8 @@
     "link3.txt"
   ],
   "texts": {
-    "2": "hello testing "
+    "2": "hello testing"
   },
-  "social": [
-    "ig.png",
-    "x.png",
-    "tiktok.png",
-    "discord.png"
-  ],
-  "ui": [
-    "background.jpg",
-    "logo.png"
-  ]
+  "social": ["ig.png", "x.png", "tiktok.png", "discord.png"],
+  "ui": ["background.jpg", "logo.png"]
 }
