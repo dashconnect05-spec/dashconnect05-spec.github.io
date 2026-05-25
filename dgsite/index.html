@@ -4,15 +4,15 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Website Demo</title>
-
+ 
 <!-- Shared styles (header, footer, nav, background) -->
 <link rel="stylesheet" href="style.css">
-
+ 
 <style>
 /* =========================================================
    INDEX-ONLY STYLES
 ========================================================= */
-
+ 
 #scroll-area {
   flex: 0 1 auto;
   max-height: 74vh;
@@ -20,12 +20,12 @@
   overflow-x: hidden;
   position: relative;
 }
-
+ 
 #container {
   position: relative;
   width: 100%;
 }
-
+ 
 .square {
   position: absolute;
   overflow: hidden;
@@ -35,17 +35,17 @@
   cursor: grab;
   touch-action: none;
 }
-
+ 
 .square:active {
   cursor: grabbing;
 }
-
+ 
 .square img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
-
+ 
 .square.fallback {
   background: linear-gradient(135deg, #444, #222);
   border: 1px solid #555;
@@ -53,7 +53,7 @@
   align-items: center;
   justify-content: center;
 }
-
+ 
 .square a {
   position: absolute;
   bottom: 5px;
@@ -65,7 +65,7 @@
   padding: 4px;
   text-align: center;
 }
-
+ 
 /* =========================================================
    TEXT BLOCK STYLES
 ========================================================= */
@@ -78,7 +78,7 @@
   padding: 20px;
   cursor: default;
 }
-
+ 
 .text-block-inner {
   color: white;
   font-family: Arial, Helvetica, sans-serif;
@@ -89,7 +89,7 @@
   letter-spacing: 1px;
   pointer-events: none;
 }
-
+ 
 @media (max-width: 700px) {
   #scroll-area {
     flex: 0 1 auto;
@@ -99,34 +99,34 @@
 }
 </style>
 </head>
-
+ 
 <body>
-
+ 
 <header>
   <br>
   <div class="header-inner">
-
+ 
     <div class="nav-group nav-left">
       <a href="comingsoon.html">MERCH</a>
       <a href="https://www.youtube.com/@outsidedash">VIDEOS</a>
     </div>
-
+ 
     <div class="logo">
       <a href="index.html"><img src="IMAGES/ui/logo.png" alt="LOGO"></a>
     </div>
-
+ 
     <div class="nav-group nav-right">
       <a href="comingsoon.html">SHOWS</a>
       <a href="https://l.instagram.com/?u=https%3A%2F%2Fffm.to%2Fplayheadsup.OYD%3Futm_source%3Dig%26utm_medium%3Dsocial%26utm_content%3Dlink_in_bio%26fbclid%3DPAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGn_vqWBYT0-5QVtamEx6GPo4O4VQR9yWzQzSiQHd9nJ2x8X0TfOoWiEQkoMC0_aem_9EC2KKcAjlVw5qmYXPM8VQ%26utm_id%3D97760_v0_s00_e0_tv3_a1dennhas28fh0&e=AT5DfiACSh5tPQSPUEv8Duo5TrQxwQ28kXXDtI_LHZg1fL-CBNjlfhFsZvTykbPE7YCJqb7CziD7WkRlS53surk07WoJhYwM-rdAoAtRQMmMP4GSrGx9eRAU6w">MUSIC</a>
     </div>
-
+ 
   </div>
 </header>
-
+ 
 <div id="scroll-area">
   <div id="container"></div>
 </div>
-
+ 
 <footer>
   <div class="footer-inner">
     <a href="https://www.instagram.com/dashgeorge/"><img src="IMAGES/social/ig.png" class="social-icon-img"></a>
@@ -140,15 +140,15 @@
     <a href="https://open.spotify.com/album/20NFLKQUVojia7LVI1O3Ao"><img src="IMAGES/social/discord.png" class="social-icon-img"></a>
   </div>
 </footer>
-
+ 
 <script>
 const container = document.getElementById('container');
 const scrollArea = document.getElementById('scroll-area');
-
+ 
 let squares = [];
 let settings = getSettings();
 let isRebuilding = false;
-
+ 
 function getSettings() {
   const mobile = window.innerWidth < 700;
   return {
@@ -159,10 +159,10 @@ function getSettings() {
     SIZE_SCALE: mobile ? 0.8 : 0.95
   };
 }
-
+ 
 function getSafePosition(index, squareWidth = 200) {
   const mobile = window.innerWidth < 700;
-
+ 
   if (mobile) {
     const containerWidth = scrollArea.clientWidth;
     return {
@@ -170,58 +170,58 @@ function getSafePosition(index, squareWidth = 200) {
       y: settings.TOP_OFFSET + index * settings.ROW_GAP
     };
   }
-
+ 
   const col = index % settings.COLS;
   const row = Math.floor(index / settings.COLS);
   const containerWidth = scrollArea.clientWidth;
   const totalWidth = settings.COL_GAP * (settings.COLS - 1);
   const startX = (containerWidth - totalWidth) / 2 - 80;
   const maxX = containerWidth - squareWidth - 40;
-
+ 
   let x, y, attempts = 0;
-
+ 
   do {
     const randomOffsetX = (Math.random() - 0.5) * 120;
     const randomOffsetY = (Math.random() - 0.5) * 160;
-
+ 
     x = Math.min(startX + col * settings.COL_GAP + randomOffsetX, maxX);
     y = settings.TOP_OFFSET + row * settings.ROW_GAP + randomOffsetY;
-
+ 
     attempts++;
-
+ 
     if (attempts > 10) {
       x = Math.min(startX + col * settings.COL_GAP, maxX);
       y = settings.TOP_OFFSET + row * settings.ROW_GAP;
       break;
     }
-
+ 
   } while (squares.some(sq => {
     const dx = sq.x - x;
     const dy = sq.y - y;
     return Math.sqrt(dx * dx + dy * dy) < squareWidth;
   }));
-
+ 
   return { x, y };
 }
-
+ 
 async function loadData() {
   const res = await fetch('data.json');
   const data = await res.json();
-
+ 
   container.style.height =
     (Math.ceil(data.images.length / settings.COLS) * settings.ROW_GAP + 1200) + 'px';
-
+ 
   for (let i = 0; i < data.images.length; i++) {
     if (data.images[i] === 'text') {
-      // grab the matching text from the texts object using the index as key
       const textContent = data.texts && data.texts[String(i)] ? data.texts[String(i)] : '';
       createTextBlock(textContent, i);
     } else {
-      createSquare(data.images[i], data.links[i], i);
+      const linkFile = data.links[i] || 'none';
+      createSquare(data.images[i], linkFile, i);
     }
   }
 }
-
+ 
 /* =========================================================
    CREATE TEXT BLOCK
 ========================================================= */
@@ -229,23 +229,23 @@ function createTextBlock(text, index) {
   const width = 260;
   const height = 160;
   const pos = getSafePosition(index, width);
-
+ 
   const div = document.createElement('div');
   div.className = 'square text-block';
-
+ 
   div.style.opacity = "0";
   div.style.left = pos.x + 'px';
   div.style.top = pos.y + 'px';
   div.style.width = width + 'px';
   div.style.height = height + 'px';
-
+ 
   const inner = document.createElement('div');
   inner.className = 'text-block-inner';
   inner.textContent = text;
-
+ 
   div.appendChild(inner);
   container.appendChild(div);
-
+ 
   const squareObj = {
     el: div,
     x: pos.x,
@@ -255,36 +255,36 @@ function createTextBlock(text, index) {
     hover: false,
     dragging: false
   };
-
+ 
   div.addEventListener('mouseenter', () => squareObj.hover = true);
   div.addEventListener('mouseleave', () => squareObj.hover = false);
-
+ 
   squares.push(squareObj);
-
+ 
   requestAnimationFrame(() => { div.style.opacity = "1"; });
 }
-
+ 
 /* =========================================================
    CREATE IMAGE SQUARE
 ========================================================= */
 async function createSquare(imgName, linkFile, index) {
   const baseSize = (160 + Math.random() * 120) * settings.SIZE_SCALE;
   const pos = getSafePosition(index, baseSize * 1.2);
-
+ 
   const div = document.createElement('div');
   div.className = 'square';
-
+ 
   const img = document.createElement('img');
   img.src = 'IMAGES/' + imgName;
-
+ 
   const a = document.createElement('a');
-
+ 
   div.style.opacity = "0";
   div.style.left = pos.x + 'px';
   div.style.top = pos.y + 'px';
   div.style.width = baseSize + 'px';
   div.style.height = baseSize + 'px';
-
+ 
   img.onload = () => {
     const ratio = img.naturalWidth / img.naturalHeight;
     let width, height;
@@ -298,28 +298,31 @@ async function createSquare(imgName, linkFile, index) {
     div.style.width = width + 'px';
     div.style.height = height + 'px';
   };
-
+ 
   img.onerror = () => div.classList.add('fallback');
-
+ 
+  /* only fetch link if one is provided */
   try {
-    const txt = await fetch('LINKS/' + linkFile).then(r => r.text());
-    a.href = txt.trim();
-    a.target = "_blank";
+    if (linkFile !== 'none') {
+      const txt = await fetch('LINKS/' + linkFile).then(r => r.text());
+      a.href = txt.trim();
+      a.target = "_blank";
+    }
   } catch {}
-
+ 
   let wasDragging = false;
-
+ 
   const squareObj = {
     el: div, x: pos.x, y: pos.y,
     originX: pos.x, originY: pos.y,
     hover: false, dragging: false
   };
-
+ 
   div.addEventListener('mouseenter', () => squareObj.hover = true);
   div.addEventListener('mouseleave', () => squareObj.hover = false);
-
+ 
   let offsetX = 0, offsetY = 0, pointerId = null;
-
+ 
   div.addEventListener('pointerdown', (e) => {
     squareObj.dragging = true;
     wasDragging = false;
@@ -330,7 +333,7 @@ async function createSquare(imgName, linkFile, index) {
     div.style.zIndex = 9999;
     e.preventDefault();
   });
-
+ 
   div.addEventListener('pointermove', (e) => {
     if (!squareObj.dragging || e.pointerId !== pointerId) return;
     wasDragging = true;
@@ -341,7 +344,7 @@ async function createSquare(imgName, linkFile, index) {
     squareObj.x = x;
     squareObj.y = y;
   });
-
+ 
   div.addEventListener('pointerup', (e) => {
     if (e.pointerId !== pointerId) return;
     squareObj.dragging = false;
@@ -352,7 +355,7 @@ async function createSquare(imgName, linkFile, index) {
     squareObj.x = squareObj.originX;
     squareObj.y = squareObj.originY;
   });
-
+ 
   div.addEventListener('pointercancel', () => {
     squareObj.dragging = false;
     div.style.zIndex = '';
@@ -361,28 +364,28 @@ async function createSquare(imgName, linkFile, index) {
     squareObj.x = squareObj.originX;
     squareObj.y = squareObj.originY;
   });
-
+ 
   a.addEventListener('click', (e) => {
     if (wasDragging) e.preventDefault();
   });
-
+ 
   div.appendChild(img);
   div.appendChild(a);
   container.appendChild(div);
   squares.push(squareObj);
-
+ 
   requestAnimationFrame(() => { div.style.opacity = "1"; });
 }
-
+ 
 function updateSquares() {
   const scrollTop = scrollArea.scrollTop;
   const viewportCenter = scrollTop + scrollArea.clientHeight / 2;
-
+ 
   squares.forEach(sq => {
     const distance = Math.abs(viewportCenter - sq.y);
     const range = 500;
     let influence = Math.max(0, Math.min(1, 1 - distance / range));
-
+ 
     let scale, opacity;
     if (sq.hover) {
       scale = 1.5; opacity = 1;
@@ -390,17 +393,17 @@ function updateSquares() {
       scale = 0.85 + influence * 0.3;
       opacity = 0.5 + influence * 0.5;
     }
-
+ 
     sq.el.style.transform = `scale(${scale})`;
     sq.el.style.opacity = opacity;
   });
 }
-
+ 
 function animate() {
   if (squares.length > 0) updateSquares();
   requestAnimationFrame(animate);
 }
-
+ 
 window.addEventListener('resize', () => {
   if (isRebuilding) return;
   isRebuilding = true;
@@ -411,10 +414,10 @@ window.addEventListener('resize', () => {
     loadData().then(() => { isRebuilding = false; });
   });
 });
-
+ 
 loadData();
 animate();
 </script>
-
+ 
 </body>
 </html>
