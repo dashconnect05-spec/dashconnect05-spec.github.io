@@ -136,12 +136,12 @@ footer {
 .footer-inner {
   display: flex;
   justify-content: center;
-  gap: 14px;
+  gap: 24px;
 }
 
 .social-icon-img {
-  width: clamp(60px, 2.8vw, 38px);
-  height: clamp(60px, 2.8vw, 38px);
+  width: 28px;
+  height: 28px;
   object-fit: contain;
   cursor: pointer;
   transition: 0.2s;
